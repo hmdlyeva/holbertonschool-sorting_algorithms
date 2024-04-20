@@ -1,44 +1,43 @@
 #include "sort.h"
-
 /**
- * selection_sort - Find the lowest number and put it in front
- * @array: Array to sort
- * @size: Size of the array
- *
- */
+ * _swap - swap two numbers
+ * @a: integer
+ * @b: integer
+ **/
+void _swap(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+/**
+ * selection_sort - sort array using selection sort algorithm
+ * @array: array
+ * @size: array size
+ **/
+
 void selection_sort(int *array, size_t size)
 {
-	size_t i = 0;
-	size_t j;
-	int temp;
-	int compare;
-	int min_index;
-	int swapped;
+	unsigned int i, j, min;
 
-	if (array == NULL)
+	if (array == NULL || size < 2)
 		return;
-	while (i < size)
+
+	for (i = 0; i < size; i++)
 	{
-		j = i;
-		compare = array[i];
-		swapped = 0;
-		while (j < size)
+		min = i;
+		for (j = i + 1; j < size; j++)
 		{
-			if (compare > array[j])
-			{
-				compare = array[j];
-				min_index = j;
-				swapped = 1;
-			}
-			j++;
+			if (array[min] > array[j])
+				min = j;
 		}
-		if (swapped == 1)
+		if (min != i)
 		{
-			temp = array[i];
-			array[i] = compare;
-			array[min_index] = temp;
+			_swap(&array[i], &array[min]);
 			print_array(array, size);
 		}
-		i++;
 	}
+
 }

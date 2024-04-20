@@ -1,39 +1,29 @@
 #include "sort.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
- * bubble_sort - Sort by swapping largest items to end of array
- * @array: Array to be sorted
- * @size: Size of the array
+ * bubble_sort - Sort an array with buble sort algorithm
+ * @array: Array that going to be sorted
+ * @size: Size of array
+ * Return: Nothing, just sort and print when swap
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t j;
-	int swapped;
-	size_t temp;
-	size_t tempsize;
+	int tmp;
+	size_t i, j;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return;
-	tempsize = size;
-	swapped = 1;
-	while (swapped)
+
+	for (i = 0; i < size; i++)
 	{
-		swapped = 0;
-		j = 0;
-		while (j < tempsize - 1)
+		for (j = 0; j < size - 1; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
-				temp = array[j + 1];
-				array[j + 1] = array[j];
-				array[j] = temp;
+				tmp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = tmp;
 				print_array(array, size);
-				swapped = 1;
 			}
-			j++;
 		}
-		tempsize = j;
 	}
 }
